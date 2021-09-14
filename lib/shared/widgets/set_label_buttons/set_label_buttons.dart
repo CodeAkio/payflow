@@ -9,7 +9,8 @@ class SetLabelButtons extends StatelessWidget {
   final VoidCallback primaryOnPressed;
   final String secoundaryLabel;
   final VoidCallback secoundaryOnPressed;
-  final bool enabledPrimaryColor;
+  final bool enablePrimaryColor;
+  final bool enableSecondaryColor;
 
   const SetLabelButtons(
       {Key? key,
@@ -17,28 +18,44 @@ class SetLabelButtons extends StatelessWidget {
       required this.primaryOnPressed,
       required this.secoundaryLabel,
       required this.secoundaryOnPressed,
-      this.enabledPrimaryColor = false})
+      this.enablePrimaryColor = false,
+      this.enableSecondaryColor = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.shape,
-      height: 56,
-      child: Row(
+      color: AppColors.background,
+      height: 57,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(
-            child: LabelButton(
-              label: primaryLabel,
-              onPressed: primaryOnPressed,
-              style: enabledPrimaryColor ? TextStyles.buttonPrimary : null,
-            ),
+          Divider(
+            thickness: 1,
+            height: 1,
+            color: AppColors.stroke,
           ),
-          VerticalDivider(),
-          Expanded(
-            child: LabelButton(
-              label: secoundaryLabel,
-              onPressed: secoundaryOnPressed,
+          Container(
+            height: 56,
+            child: Row(
+              children: [
+                Expanded(
+                  child: LabelButton(
+                    label: primaryLabel,
+                    onPressed: primaryOnPressed,
+                    style: enablePrimaryColor ? TextStyles.buttonPrimary : null,
+                  ),
+                ),
+                VerticalDivider(),
+                Expanded(
+                  child: LabelButton(
+                    label: secoundaryLabel,
+                    onPressed: secoundaryOnPressed,
+                    style:
+                        enableSecondaryColor ? TextStyles.buttonPrimary : null,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
