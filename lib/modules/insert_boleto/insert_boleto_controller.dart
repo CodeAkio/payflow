@@ -17,7 +17,8 @@ class InsertBoletoController {
 
   void onChange(
       {String? name, String? dueDate, double? value, String? barcode}) {
-    model = model.copyWith();
+    model = model.copyWith(
+        name: name, dueDate: dueDate, value: value, barcode: barcode);
   }
 
   Future<void> saveBoleto() async {
@@ -28,9 +29,8 @@ class InsertBoletoController {
     return;
   }
 
-  Future<void> cadastrarBoleto() async {
+  Future<void> cadastrar() async {
     final form = formKey.currentState;
-
     if (form!.validate()) {
       return await saveBoleto();
     }
