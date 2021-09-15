@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_text_styles.dart';
+import 'package:animated_card/animated_card.dart';
 
 class InputTextWidget extends StatelessWidget {
   final String label;
@@ -22,44 +23,47 @@ class InputTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: Column(
-        children: [
-          TextFormField(
-            controller: controller,
-            onChanged: onChanged,
-            style: TextStyles.input,
-            validator: validator,
-            decoration: InputDecoration(
-                contentPadding: EdgeInsets.zero,
-                labelText: label,
-                labelStyle: TextStyles.input,
-                icon: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      icon,
-                      color: AppColors.primary,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
-                      child: Container(
-                        width: 1,
-                        height: 48,
-                        color: AppColors.stroke,
+    return AnimatedCard(
+      direction: AnimatedCardDirection.left,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 16),
+        child: Column(
+          children: [
+            TextFormField(
+              controller: controller,
+              onChanged: onChanged,
+              style: TextStyles.input,
+              validator: validator,
+              decoration: InputDecoration(
+                  contentPadding: EdgeInsets.zero,
+                  labelText: label,
+                  labelStyle: TextStyles.input,
+                  icon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        icon,
+                        color: AppColors.primary,
                       ),
-                    )
-                  ],
-                ),
-                border: InputBorder.none),
-          ),
-          Divider(
-            height: 1,
-            thickness: 1,
-            color: AppColors.stroke,
-          )
-        ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        child: Container(
+                          width: 1,
+                          height: 48,
+                          color: AppColors.stroke,
+                        ),
+                      )
+                    ],
+                  ),
+                  border: InputBorder.none),
+            ),
+            Divider(
+              height: 1,
+              thickness: 1,
+              color: AppColors.stroke,
+            )
+          ],
+        ),
       ),
     );
   }
